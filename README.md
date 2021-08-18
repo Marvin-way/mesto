@@ -1,5 +1,5 @@
 # Проект 4: Mesto
-https://marvin-way.github.io/Mesto/
+https://marvin-way.github.io/mesto/
 
 **Что это**
 
