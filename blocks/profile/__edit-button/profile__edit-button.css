@@ -12,3 +12,6 @@
   margin-left: 18px;
   align-self: center;
 }
+.profile__edit-button:hover {
+  opacity: 0.8;
+}
