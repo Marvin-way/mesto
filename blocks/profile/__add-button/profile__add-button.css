@@ -1,5 +1,5 @@
 .profile__add-button {
-  height: 50px;
+  min-height: 50px;
   width: 150px;
   margin-right: 0px;
   align-self: center;
