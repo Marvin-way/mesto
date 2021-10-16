@@ -1,5 +1,5 @@
-.popup__name {
-  margin-bottom: 30px;
+.popup__field {
+  margin-bottom: 28px;
   width: 358px;
   min-height: 27px;
   border: none;
@@ -7,10 +7,10 @@
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 16.94px;
 }
 @media screen and (max-width: 650px) {
-  .popup__name {
+  .popup__field {
     width: 238px;
   }
 }

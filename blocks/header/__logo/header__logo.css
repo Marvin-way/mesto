@@ -4,10 +4,15 @@
   max-width: 142px;
 }
 .header__logo:hover {
-  opacity: 0.8;
+  opacity: 0.5;
 }
 @media screen and (max-width: 930px) {
   .header__logo {
     margin-left: 27px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .header__logo {
+    max-width: 104px;
   }
 }

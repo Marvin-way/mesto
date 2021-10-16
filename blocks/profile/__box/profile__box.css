@@ -6,3 +6,9 @@
     max-width: 282px;
   }
 }
+@media screen and (max-width: 370px) {
+  .profile__box {
+    margin-right: 0px;
+    margin-left: 26px;
+  }
+}
