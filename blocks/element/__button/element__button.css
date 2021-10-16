@@ -7,12 +7,12 @@
   min-height: 19px;
   margin: 25px 25px 30px auto;
   padding: 0px;
-  background-image: url("../../../images/like.png");
+  background-image: url("../../../images/like.svg");
   background-repeat: no-repeat;
 }
 .element__button:hover {
   opacity: 0.8;
 }
 .element__button:active {
-  background-image: url("../../../images/like-click.png");
+  background-image: url("../../../images/like_active.svg");
 }
