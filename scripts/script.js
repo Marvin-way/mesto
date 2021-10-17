@@ -31,4 +31,4 @@ function handleProfileFormSubmit (evt) {
 }
 editButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
-saveButton.addEventListener('submit', handleProfileFormSubmit);
+popupContainer.addEventListener('submit', handleProfileFormSubmit);
