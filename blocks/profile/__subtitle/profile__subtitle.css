@@ -6,6 +6,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 294px;
 }
 @media screen and (max-width: 700px) {
   .profile__subtitle {
@@ -16,5 +17,7 @@
   .profile__subtitle {
     font-size: 14px;
     line-height: 16.94px;
+    max-width: 200px;
+    margin-left: 21px;
   }
 }

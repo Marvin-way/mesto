@@ -14,3 +14,9 @@
     line-height: 32.68px;
   }
 }
+@media screen and (max-width: 370px) {
+  .profile__title {
+    max-width: 200px;
+    margin-left: 25px;
+  }
+}
