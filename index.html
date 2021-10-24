@@ -29,7 +29,7 @@
      </section>
      <section class="element">
       <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
+        <img alt="изображение карточки элемента" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" class="element__image">
         <div class="element__title">
           <h3 class="element__name">Карачаево-Черкессия</h3>
           <button type="button" class="element__button"></button>
@@ -78,8 +78,8 @@
         &copy; 2021 Mesto Russia
       </p>
     </footer>
-    <div class="popup">
-      <form class="popup__container" name="edit-profile">
+    <div class="popup popup_profile">
+      <form class="popup__container popup__container_profile" name="edit-profile">
         <h3 class="popup__title">Редактировать профиль</h3>
         <input type="text" name="name" class="popup__field popup__field_name" placeholder="Здесь можно ввести имя">
         <input type="text" name="job" class="popup__field popup__field_job" placeholder="А здесь профессию">
@@ -89,6 +89,18 @@
         <button type="button" class="popup__close-button"></button>
       </form>
     </div>
+    <div class="popup popup_card">
+      <form class="popup__container popup__container_card" name="edit-profile">
+        <h3 class="popup__title">Новое место</h3>
+        <input type="text" name="name" class="popup__field popup__field_place" placeholder="Название">
+        <input type="text" name="job" class="popup__field popup__field_link" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button">
+          Создать
+        </button>
+        <button type="button" class="popup__close-button popup__close-button_card"></button>
+      </form>
+    </div>
+
   </div>
   <script src="./scripts/script.js"></script>
 </body>
