@@ -1,3 +1,6 @@
+/////////////////////////////////////////////////////////////////////////
+////////////    Находим все нужные для алгоритма узлы     ///////////////
+/////////////////////////////////////////////////////////////////////////
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
 const closeButton = page.querySelector('.popup__close-button');
@@ -17,48 +20,6 @@ const popupLink = page.querySelector('.popup__field_link');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
-
-/////////////////////////////////////////////////////////////////////////
-///////////////////      Основные скрипты тут     ///////////////////////
-/////////////////////////////////////////////////////////////////////////
-function addCard(name, link) {
-  const createElement = document.querySelector('#create-element').content;
-  const elementCard = createElement.querySelector('.element__card').cloneNode(true);
-  console.log(elementCard);
-  elementCard.querySelector('.element__name').textContent = name;
-  elementCard.querySelector('.element__image').src = link;
-  elementsList.prepend(elementCard);
-}
-function openPopup(thisPopup) {
-  thisPopup.classList.add('popup_opened');
-  popupName.value = profileTitle.textContent;
-  popupJob.value = profileSubTitle.textContent;
-}
-function closePopup(thisPopup) {
-  thisPopup.classList.remove('popup_opened');
-}
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault();
-    profileTitle.textContent = popupName.value;
-    profileSubTitle.textContent = popupJob.value;
-    closePopup(popupProfile);
-}
-function handleCardFormSubmit (evt) {
-  evt.preventDefault();
-  addCard(popupPlace.value, popupLink.value);
-  evt.target.parentElement.classList.remove('popup_opened');
-}
-/////////////////////////////////////////////////////////////////////////
-////////////      Устанавливаем слежку за событиями     /////////////////
-/////////////////////////////////////////////////////////////////////////
-
-editButton.addEventListener('click', () => openPopup(popupProfile));
-addButton.addEventListener('click', () => openPopup(popupCard));
-closeButton.addEventListener('click', () => closePopup(popupProfile));
-closeButtonCard.addEventListener('click', () => closePopup(popupCard));
-popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
-popupContainerCard.addEventListener('submit', handleCardFormSubmit);
-
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -94,3 +55,50 @@ function startPage () {
   })
 };
 startPage ();
+/////////////////////////////////////////////////////////////////////////
+///////////////////      Основные скрипты тут     ///////////////////////
+/////////////////////////////////////////////////////////////////////////
+function addCard(name, link) {
+  const createElement = document.querySelector('#create-element').content; //Копируем нужный узел из шаблона в HTML
+  const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
+  elementCard.querySelector('.element__name').textContent = name; //Вставляем в название карточки имя из массива
+  elementCard.querySelector('.element__image').src = link; //и ссылку таким же образом
+  // elementCard.querySelector('.element__button').id = Math.random();//////
+  //здесь я хотел сделать уникальные ID для кнопки каждой карточки //////////
+  //но не понял как затем найти ее по селектору, как ее можно достать getElementById('${переменная с ID}') ???//
+  let buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
+  buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
+    buttonLike.classList.toggle('element__button_active');
+  });
+  elementsList.prepend(elementCard);
+}
+function openPopup(thisPopup) {
+  thisPopup.classList.add('popup_opened');
+  popupName.value = profileTitle.textContent;
+  popupJob.value = profileSubTitle.textContent;
+}
+function closePopup(thisPopup) {
+  thisPopup.classList.remove('popup_opened');
+}
+function handleProfileFormSubmit(evt) {
+    evt.preventDefault();
+    profileTitle.textContent = popupName.value;
+    profileSubTitle.textContent = popupJob.value;
+    closePopup(popupProfile);
+}
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+  addCard(popupPlace.value, popupLink.value);
+  evt.target.parentElement.classList.remove('popup_opened');
+  popupPlace.value = "";
+  popupLink.value = "";
+}
+/////////////////////////////////////////////////////////////////////////
+////////////      Устанавливаем слежку за событиями =)    ///////////////
+/////////////////////////////////////////////////////////////////////////
+editButton.addEventListener('click', () => openPopup(popupProfile));
+addButton.addEventListener('click', () => openPopup(popupCard));
+closeButton.addEventListener('click', () => closePopup(popupProfile));
+closeButtonCard.addEventListener('click', () => closePopup(popupCard));
+popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
+popupContainerCard.addEventListener('submit', handleCardFormSubmit);
