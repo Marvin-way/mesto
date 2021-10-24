@@ -14,7 +14,7 @@
       <a href="#"><img src="images/logo/__logo.svg" class="header__logo" alt="Логотип карты России"></a> 
     </header>
     <main class="content">
-     <section class="profile">
+      <section class="profile">
         <img class="profile__avatar" src="./images/__avatar.png"
         alt="Аватар пользователя">
         <div class="profile__info">
@@ -24,60 +24,19 @@
           </div>
           <h2 class="profile__subtitle">Исследователь океана</h2>
         </div>
-        
         <button type="button" class="profile__add-button"></button>
-     </section>
-     <section class="element">
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Карачаево-Черкессия</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Name of elemccccccccccent</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Name of element</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Name of elemeccccccccccccnt</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Name of elementsssssssssssssssssssssssssssss</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
-      <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" class="element__image">
-        <div class="element__title">
-          <h3 class="element__name">Name of element</h3>
-          <button type="button" class="element__button"></button>
-        </div>
-      </article>
+      </section>
+      <!-- ||||||||||||||||||||||||||||||||||||||||| -->
+    <section class="element">
     </section>
-    
+      <!-- ||||||||||||||||||||||||||||||||||||||||| -->
     </main>
     <footer class="footer">
       <p class="footer__copyright">
         &copy; 2021 Mesto Russia
       </p>
     </footer>
+    <!-- ||||||||||||||||||||||||||||||||||||||||||| -->
     <div class="popup popup_profile">
       <form class="popup__container popup__container_profile" name="edit-profile">
         <h3 class="popup__title">Редактировать профиль</h3>
@@ -100,7 +59,16 @@
         <button type="button" class="popup__close-button popup__close-button_card"></button>
       </form>
     </div>
-
+    <template id="create-element">
+      <article class="element__card">
+        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" 
+        class="element__image">
+        <div class="element__title">
+          <h3 class="element__name">Name of element</h3>
+          <button type="button" class="element__button"></button>
+        </div>
+      </article>
+    </template>
   </div>
   <script src="./scripts/script.js"></script>
 </body>

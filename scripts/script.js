@@ -1,22 +1,32 @@
-let page = document.querySelector('.page');
-let editButton = page.querySelector('.profile__edit-button');
-let closeButton = page.querySelector('.popup__close-button');
-let closeButtonCard = page.querySelector('.popup__close-button_card');
-let saveButton = page.querySelector('.popup__save-button');
-let addButton = page.querySelector('.profile__add-button');
+const page = document.querySelector('.page');
+const editButton = page.querySelector('.profile__edit-button');
+const closeButton = page.querySelector('.popup__close-button');
+const closeButtonCard = page.querySelector('.popup__close-button_card');
+const saveButton = page.querySelector('.popup__save-button');
+const addButton = page.querySelector('.profile__add-button');
+const elementsList = page.querySelector('.element');
 
-let popupProfile = page.querySelector('.popup_profile');
-let popupCard = page.querySelector('.popup_card');
-let popupContainerProfile = page.querySelector('.popup__container_profile');
-let popupContainerCard = page.querySelector('.popup__container_card');
-let popupName = page.querySelector('.popup__field_name');
-let popupJob = page.querySelector('.popup__field_job');
-let popupPlace = page.querySelector('.popup__field_place');
-let popupLink = page.querySelector('.popup__field_link');
+const popupProfile = page.querySelector('.popup_profile');
+const popupCard = page.querySelector('.popup_card');
+const popupContainerProfile = page.querySelector('.popup__container_profile');
+const popupContainerCard = page.querySelector('.popup__container_card');
+const popupName = page.querySelector('.popup__field_name');
+const popupJob = page.querySelector('.popup__field_job');
+const popupPlace = page.querySelector('.popup__field_place');
+const popupLink = page.querySelector('.popup__field_link');
 
-let profileTitle = page.querySelector('.profile__title');
-let profileSubTitle = page.querySelector('.profile__subtitle');
+const profileTitle = page.querySelector('.profile__title');
+const profileSubTitle = page.querySelector('.profile__subtitle');
 
+
+function addCard(name, link) {
+  const createElement = document.querySelector('#create-element').content;
+  const elementCard = createElement.querySelector('.element__card').cloneNode(true);
+  console.log(elementCard);
+  elementCard.querySelector('.element__name').textContent = name;
+  elementCard.querySelector('.element__image').src = link;
+  elementsList.append(elementCard);
+}
 function openPopup(thisPopup) {
   thisPopup.classList.add('popup_opened');
   popupName.value = profileTitle.textContent;
@@ -33,6 +43,7 @@ function handleProfileFormSubmit (evt) {
 }
 function handleCardFormSubmit (evt) {
     evt.preventDefault();
+    addCard(popupPlace.value, popupLink.value);
     evt.target.parentElement.classList.remove('popup_opened');
 }
 editButton.addEventListener('click', () => openPopup(popupProfile));
