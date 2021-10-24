@@ -18,14 +18,16 @@ const popupLink = page.querySelector('.popup__field_link');
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
 
-
+/////////////////////////////////////////////////////////////////////////
+///////////////////      Основные скрипты тут     ///////////////////////
+/////////////////////////////////////////////////////////////////////////
 function addCard(name, link) {
   const createElement = document.querySelector('#create-element').content;
   const elementCard = createElement.querySelector('.element__card').cloneNode(true);
   console.log(elementCard);
   elementCard.querySelector('.element__name').textContent = name;
   elementCard.querySelector('.element__image').src = link;
-  elementsList.append(elementCard);
+  elementsList.prepend(elementCard);
 }
 function openPopup(thisPopup) {
   thisPopup.classList.add('popup_opened');
@@ -42,10 +44,14 @@ function handleProfileFormSubmit (evt) {
     closePopup(popupProfile);
 }
 function handleCardFormSubmit (evt) {
-    evt.preventDefault();
-    addCard(popupPlace.value, popupLink.value);
-    evt.target.parentElement.classList.remove('popup_opened');
+  evt.preventDefault();
+  addCard(popupPlace.value, popupLink.value);
+  evt.target.parentElement.classList.remove('popup_opened');
 }
+/////////////////////////////////////////////////////////////////////////
+////////////      Устанавливаем слежку за событиями     /////////////////
+/////////////////////////////////////////////////////////////////////////
+
 editButton.addEventListener('click', () => openPopup(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
 closeButton.addEventListener('click', () => closePopup(popupProfile));
@@ -53,29 +59,38 @@ closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
 popupContainerCard.addEventListener('submit', handleCardFormSubmit);
 
-// const initialCards = [
-//   {
-//     name: 'Архыз',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//   },
-//   {
-//     name: 'Челябинская область',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//   },
-//   {
-//     name: 'Иваново',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//   },
-//   {
-//     name: 'Камчатка',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//   },
-//   {
-//     name: 'Холмогорский район',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//   },
-//   {
-//     name: 'Байкал',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//   }
-// ];
+/////////////////////////////////////////////////////////////////////////
+////////////   Стартовая загрузка страницы с карточками   ///////////////
+/////////////////////////////////////////////////////////////////////////
+function startPage () {
+  const initialCards = [
+    {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+  ];
+  initialCards.forEach(card => {
+    addCard(card.name, card.link);
+  })
+};
+startPage ();
