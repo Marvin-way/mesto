@@ -65,10 +65,14 @@ function addCard(name, link) {
   elementCard.querySelector('.element__image').src = link; //и ссылку таким же образом
   // elementCard.querySelector('.element__button').id = Math.random();//////
   //здесь я хотел сделать уникальные ID для кнопки каждой карточки //////////
-  //но не понял как затем найти ее по селектору, как ее можно достать getElementById('${переменная с ID}') ???//
+  //но не понял как затем найти ее по селектору, как ее можно достать getElementById('${переменная с ID}'), возможно доделаю как найду информацию//
   let buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
   buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
     buttonLike.classList.toggle('element__button_active');
+  });
+  const deleteButton = elementCard.querySelector('.element__button-delete'); // аналогично вешаем, для удаления всего узла при нажатии кнопки
+  deleteButton.addEventListener('click', () => {
+    deleteButton.parentNode.remove(deleteButton);
   });
   elementsList.prepend(elementCard);
 }
