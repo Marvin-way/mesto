@@ -8,6 +8,9 @@ const closeButtonCard = page.querySelector('.popup__close-button_card');
 const saveButton = page.querySelector('.popup__save-button');
 const addButton = page.querySelector('.profile__add-button');
 const elementsList = page.querySelector('.element');
+const imageView = page.querySelector('.popup-view');
+const imageViewImg = page.querySelector('.popup-view__image');
+const imageViewCaption = page.querySelector('.popup-view__caption');
 
 const popupProfile = page.querySelector('.popup_profile');
 const popupCard = page.querySelector('.popup_card');
@@ -54,6 +57,7 @@ function startPage () {
     addCard(card.name, card.link);
   })
 };
+
 startPage ();
 /////////////////////////////////////////////////////////////////////////
 ///////////////////      Основные скрипты тут     ///////////////////////
@@ -66,7 +70,7 @@ function addCard(name, link) {
   // elementCard.querySelector('.element__button').id = Math.random();//////
   //здесь я хотел сделать уникальные ID для кнопки каждой карточки //////////
   //но не понял как затем найти ее по селектору, как ее можно достать getElementById('${переменная с ID}'), возможно доделаю как найду информацию//
-  let buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
+  const buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
   buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
     buttonLike.classList.toggle('element__button_active');
   });
@@ -74,6 +78,7 @@ function addCard(name, link) {
   deleteButton.addEventListener('click', () => {
     deleteButton.parentNode.remove(deleteButton);
   });
+  elementCard.querySelector('.element__image').addEventListener('click', () => showImage(name, link));
   elementsList.prepend(elementCard);
 }
 function openPopup(thisPopup) {
@@ -96,6 +101,14 @@ function handleCardFormSubmit(evt) {
   evt.target.parentElement.classList.remove('popup_opened');
   popupPlace.value = "";
   popupLink.value = "";
+}
+function showImage(name, link) {
+  imageView.classList.add('popup_opened');
+  imageViewImg.src = link;
+  imageViewImg.addEventListener('click', () => closePopup(imageView));
+  imageViewCaption.textContent = name;
+  console.log(imageViewCaption);
+  console.log(imageView);
 }
 /////////////////////////////////////////////////////////////////////////
 ////////////      Устанавливаем слежку за событиями =)    ///////////////

@@ -42,27 +42,29 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <input type="text" name="name" class="popup__field popup__field_name" placeholder="Здесь можно ввести имя">
         <input type="text" name="job" class="popup__field popup__field_job" placeholder="А здесь профессию">
-        <button type="submit" class="popup__save-button">
-          Сохранить
-        </button>
+        <button type="submit" class="popup__save-button">Сохранить</button>
         <button type="button" class="popup__close-button"></button>
       </form>
+    </div>
+    <div class="popup popup-view">
+      <figure class="popup-view__figure">
+        <img class="popup-view__image" alt="Изображение карточки">
+        <figcaption class="popup-view__caption">lalala</figcaption>
+      </figure>
+      <button type="button" class="popup__close-button"></button>
     </div>
     <div class="popup popup_card">
       <form class="popup__container popup__container_card" name="edit-profile">
         <h3 class="popup__title">Новое место</h3>
         <input type="text" name="name" class="popup__field popup__field_place" placeholder="Название">
         <input type="text" name="job" class="popup__field popup__field_link" placeholder="Ссылка на картинку">
-        <button type="submit" class="popup__save-button">
-          Создать
-        </button>
+        <button type="submit" class="popup__save-button">Создать</button>
         <button type="button" class="popup__close-button popup__close-button_card"></button>
       </form>
     </div>
     <template id="create-element">
       <article class="element__card">
-        <img alt="изображение карточки элемента" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvlh2ZXIQJKdlyEEggMOY-5NUjyWk7ir9DXQ&usqp=CAU" 
-        class="element__image">
+        <img alt="изображение карточки элемента" class="element__image">
         <button class="element__button-delete" type="button"></button>
         <div class="element__title">
           <h3 class="element__name">Name of element</h3>
