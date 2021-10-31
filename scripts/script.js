@@ -5,6 +5,7 @@ const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
 const closeButton = page.querySelector('.popup__close-button');
 const closeButtonCard = page.querySelector('.popup__close-button_card');
+const closeButtonView = page.querySelector('.popup__close-button_view');
 const saveButton = page.querySelector('.popup__save-button');
 const addButton = page.querySelector('.profile__add-button');
 const elementsList = page.querySelector('.element');
@@ -105,7 +106,7 @@ function handleCardFormSubmit(evt) {
 function showImage(name, link) {
   imageView.classList.add('popup_opened');
   imageViewImg.src = link;
-  imageViewImg.addEventListener('click', () => closePopup(imageView));
+  closeButtonView.addEventListener('click', () => closePopup(imageView));
   imageViewCaption.textContent = name;
   console.log(imageViewCaption);
   console.log(imageView);
