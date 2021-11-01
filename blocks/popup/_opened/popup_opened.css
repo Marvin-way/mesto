@@ -2,5 +2,4 @@
   visibility: visible;
   opacity: 1;
   transition: visibility .5s, opacity .3s linear;
-  justify-content: center;
 }

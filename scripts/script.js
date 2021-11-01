@@ -68,9 +68,6 @@ function addCard(name, link) {
   const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
   elementCard.querySelector('.element__name').textContent = name; //Вставляем в название карточки имя из массива
   elementCard.querySelector('.element__image').src = link; //и ссылку таким же образом
-  // elementCard.querySelector('.element__button').id = Math.random();//////
-  //здесь я хотел сделать уникальные ID для кнопки каждой карточки //////////
-  //но не понял как затем найти ее по селектору, как ее можно достать getElementById('${переменная с ID}'), возможно доделаю как найду информацию//
   const buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
   buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
     buttonLike.classList.toggle('element__button_active');
@@ -108,8 +105,6 @@ function showImage(name, link) {
   imageViewImg.src = link;
   closeButtonView.addEventListener('click', () => closePopup(imageView));
   imageViewCaption.textContent = name;
-  console.log(imageViewCaption);
-  console.log(imageView);
 }
 /////////////////////////////////////////////////////////////////////////
 ////////////      Устанавливаем слежку за событиями =)    ///////////////
