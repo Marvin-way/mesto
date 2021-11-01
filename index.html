@@ -40,8 +40,8 @@
     <div class="popup popup_profile">
       <form class="popup__container popup__container_profile" name="edit-profile">
         <h3 class="popup__title">Редактировать профиль</h3>
-        <input type="text" name="name" class="popup__field popup__field_name" placeholder="Здесь можно ввести имя">
-        <input type="text" name="job" class="popup__field popup__field_job" placeholder="А здесь профессию">
+        <input type="text" name="name" class="popup__field popup__field_name" placeholder="Здесь можно ввести имя" required="required">
+        <input type="text" name="job" class="popup__field popup__field_job" placeholder="А здесь профессию" required="required">
         <button type="submit" class="popup__save-button">Сохранить</button>
         <button type="button" class="popup__close-button"></button>
       </form>
@@ -57,8 +57,8 @@
     <div class="popup popup_card">
       <form class="popup__container popup__container_card" name="edit-profile">
         <h3 class="popup__title">Новое место</h3>
-        <input type="text" name="name" class="popup__field popup__field_place" placeholder="Название">
-        <input type="url" name="job" class="popup__field popup__field_link" placeholder="Ссылка на картинку">
+        <input type="text" name="name" class="popup__field popup__field_place" placeholder="Название" required="required">
+        <input type="url" name="job" class="popup__field popup__field_link" placeholder="Ссылка на картинку" required="required">
         <button type="submit" class="popup__save-button">Создать</button>
         <button type="button" class="popup__close-button popup__close-button_card"></button>
       </form>
