@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
-const closeButton = page.querySelector('.popup__close-button');
+const closeButtonProfile = page.querySelector('.popup__close-button');
 const closeButtonCard = page.querySelector('.popup__close-button_card');
 const closeButtonView = page.querySelector('.popup__close-button_view');
 const saveButton = page.querySelector('.popup__save-button');
@@ -24,40 +24,7 @@ const popupLink = page.querySelector('.popup__field_link');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
-/////////////////////////////////////////////////////////////////////////
-////////////   Стартовая загрузка страницы с карточками   ///////////////
-/////////////////////////////////////////////////////////////////////////
-function startPage () {
-  const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-  initialCards.forEach(card => {
-    addCard(card.name, card.link);
-  })
-};
+
 
 startPage ();
 /////////////////////////////////////////////////////////////////////////
@@ -68,6 +35,7 @@ function addCard(name, link) {
   const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
   elementCard.querySelector('.element__name').textContent = name; //Вставляем в название карточки имя из массива
   elementCard.querySelector('.element__image').src = link; //и ссылку таким же образом
+  elementCard.querySelector('.element__image').alt = `Картинка ${name}`;
   const buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
   buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
     buttonLike.classList.toggle('element__button_active');
@@ -103,6 +71,7 @@ function handleCardFormSubmit(evt) {
 function showImage(name, link) {
   imageView.classList.add('popup_opened');
   imageViewImg.src = link;
+  imageViewImg.alt = `Картинка ${name}`;
   closeButtonView.addEventListener('click', () => closePopup(imageView));
   imageViewCaption.textContent = name;
 }
@@ -111,7 +80,7 @@ function showImage(name, link) {
 /////////////////////////////////////////////////////////////////////////
 editButton.addEventListener('click', () => openPopup(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
-closeButton.addEventListener('click', () => closePopup(popupProfile));
+closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
 popupContainerCard.addEventListener('submit', handleCardFormSubmit);
