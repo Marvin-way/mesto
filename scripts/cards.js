@@ -1,7 +1,6 @@
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
-
 function startPage () {
   const initialCards = [
     {
@@ -30,6 +29,6 @@ function startPage () {
     }
   ];
   initialCards.forEach(card => {
-    addCard(card.name, card.link);
+    renderCard(card.name, card.link);
   })
 };

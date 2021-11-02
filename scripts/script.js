@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
-const closeButtonProfile = page.querySelector('.popup__close-button');
+const closeButtonProfile = page.querySelector('.popup__close-button_profile');
 const closeButtonCard = page.querySelector('.popup__close-button_card');
 const closeButtonView = page.querySelector('.popup__close-button_view');
 const saveButton = page.querySelector('.popup__save-button');
@@ -24,12 +24,12 @@ const popupLink = page.querySelector('.popup__field_link');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
-
-
-startPage ();
 /////////////////////////////////////////////////////////////////////////
 ///////////////////      Основные скрипты тут     ///////////////////////
 /////////////////////////////////////////////////////////////////////////
+function renderCard(name, link) {
+  elementsList.prepend(addCard(name, link));
+}
 function addCard(name, link) {
   const createElement = document.querySelector('#create-element').content; //Копируем нужный узел из шаблона в HTML
   const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
@@ -45,15 +45,18 @@ function addCard(name, link) {
     deleteButton.parentNode.remove(deleteButton);
   });
   elementCard.querySelector('.element__image').addEventListener('click', () => showImage(name, link));
-  elementsList.prepend(elementCard);
+  return elementCard;
 }
 function openPopup(thisPopup) {
   thisPopup.classList.add('popup_opened');
-  popupName.value = profileTitle.textContent;
-  popupJob.value = profileSubTitle.textContent;
 }
 function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
+}
+function handleProfileFormOpen(popupProfile) {
+  popupName.value = profileTitle.textContent;
+  popupJob.value = profileSubTitle.textContent;
+  openPopup(popupProfile);
 }
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -63,24 +66,28 @@ function handleProfileFormSubmit(evt) {
 }
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  addCard(popupPlace.value, popupLink.value);
-  evt.target.parentElement.classList.remove('popup_opened');
+  renderCard(popupPlace.value, popupLink.value);
+  closePopup(popupCard);
   popupPlace.value = "";
   popupLink.value = "";
 }
 function showImage(name, link) {
-  imageView.classList.add('popup_opened');
   imageViewImg.src = link;
   imageViewImg.alt = `Картинка ${name}`;
-  closeButtonView.addEventListener('click', () => closePopup(imageView));
   imageViewCaption.textContent = name;
+  openPopup(imageView);
 }
 /////////////////////////////////////////////////////////////////////////
 ////////////      Устанавливаем слежку за событиями =)    ///////////////
 /////////////////////////////////////////////////////////////////////////
-editButton.addEventListener('click', () => openPopup(popupProfile));
+editButton.addEventListener('click', () => handleProfileFormOpen(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
+closeButtonView.addEventListener('click', () => closePopup(imageView));
 popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
 popupContainerCard.addEventListener('submit', handleCardFormSubmit);
+startPage ();
+
+  // evt.target.parentElement.classList.remove('popup_opened');
+  // выше - это заметка для себя
