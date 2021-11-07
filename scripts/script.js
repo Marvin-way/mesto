@@ -65,7 +65,6 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile);
 }
 function handleCardFormSubmit(evt) {
-  evt.preventDefault();
   renderCard(popupPlace.value, popupLink.value);
   closePopup(popupCard);
   popupPlace.value = "";
@@ -88,6 +87,3 @@ closeButtonView.addEventListener('click', () => closePopup(imageView));
 popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
 popupContainerCard.addEventListener('submit', handleCardFormSubmit);
 startPage ();
-
-  // evt.target.parentElement.classList.remove('popup_opened');
-  // выше - это заметка для себя
