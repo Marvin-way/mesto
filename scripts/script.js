@@ -6,7 +6,6 @@ const editButton = page.querySelector('.profile__edit-button');
 const closeButtonProfile = page.querySelector('.popup__close-button_profile');
 const closeButtonCard = page.querySelector('.popup__close-button_card');
 const closeButtonView = page.querySelector('.popup__close-button_view');
-const saveButton = page.querySelector('.popup__save-button');
 const addButton = page.querySelector('.profile__add-button');
 const elementsList = page.querySelector('.element');
 const imageView = page.querySelector('.popup-view');
@@ -15,12 +14,12 @@ const imageViewCaption = page.querySelector('.popup-view__caption');
 
 const popupProfile = page.querySelector('.popup_profile');
 const popupCard = page.querySelector('.popup_card');
-const popupContainerProfile = page.querySelector('.popup__container_profile');
-const popupContainerCard = page.querySelector('.popup__container_card');
-const popupName = page.querySelector('.popup__field_name');
-const popupJob = page.querySelector('.popup__field_job');
-const popupPlace = page.querySelector('.popup__field_place');
-const popupLink = page.querySelector('.popup__field_link');
+const popupFormProfile = page.querySelector('.popup__form_profile');
+const popupFormCard = page.querySelector('.popup__form_card');
+const popupName = page.querySelector('.popup__input_name');
+const popupJob = page.querySelector('.popup__input_job');
+const popupPlace = page.querySelector('.popup__input_place');
+const popupLink = page.querySelector('.popup__input_link');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
@@ -59,10 +58,9 @@ function handleProfileFormOpen(popupProfile) {
   openPopup(popupProfile);
 }
 function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    profileTitle.textContent = popupName.value;
-    profileSubTitle.textContent = popupJob.value;
-    closePopup(popupProfile);
+  profileTitle.textContent = popupName.value;
+  profileSubTitle.textContent = popupJob.value;
+  closePopup(popupProfile);
 }
 function handleCardFormSubmit(evt) {
   renderCard(popupPlace.value, popupLink.value);
@@ -84,6 +82,6 @@ addButton.addEventListener('click', () => openPopup(popupCard));
 closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
 closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 closeButtonView.addEventListener('click', () => closePopup(imageView));
-popupContainerProfile.addEventListener('submit', handleProfileFormSubmit);
-popupContainerCard.addEventListener('submit', handleCardFormSubmit);
+popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
+popupFormCard.addEventListener('submit', handleCardFormSubmit);
 startPage ();
