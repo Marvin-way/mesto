@@ -49,7 +49,7 @@
         minlength="2"
         maxlength="40"
         required>
-        <span id="popup__input_name-error"></span>
+        <span id="popup__input_name-error" class="popup__error"></span>
         <input
         type="text"
         name="job"
@@ -59,7 +59,7 @@
         minlength="2"
         maxlength="200"
         required>
-        <span id="popup__input_job-error" class></span>
+        <span id="popup__input_job-error" class="popup__error"></span>
         <button type="submit" class="popup__button">Сохранить</button>
         <button type="button" class="popup__close-button popup__close-button_profile"></button>
       </form>
@@ -84,7 +84,7 @@
         minlength="2"
         maxlength="40"
         required>
-        <span id="popup__input_place-error"></span>
+        <span id="popup__input_place-error" class="popup__error"></span>
         <input
         type="url"
         name="job"
@@ -92,7 +92,7 @@
         class="popup__input popup__input_link"
         placeholder="Ссылка на картинку"
         required>
-        <span id="popup__input_link-error"></span>
+        <span id="popup__input_link-error" class="popup__error"></span>
         <button type="submit" class="popup__button">Создать</button>
         <button type="button" class="popup__close-button popup__close-button_card"></button>
       </form>
@@ -108,9 +108,8 @@
       </article>
     </template>
   </div>
-  <script src="./scripts/validate.js"></script>
   <script src="./scripts/cards.js"></script>
   <script src="./scripts/script.js"></script>
-  
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>

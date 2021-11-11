@@ -3,4 +3,9 @@
   background-color: #F7F7F7;
   opacity: 0.2;
   color: #000000;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
