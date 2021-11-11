@@ -59,6 +59,10 @@ function hasInvalidInput(inputList){
 function toggleButtonState(inputList, buttonElement, OurProject){ //тут мы получаем массив инпутов и кнопку отправки формы
   if(hasInvalidInput(inputList)){ // если хоть один инпут некорректный - кнопка не работает
     buttonElement.classList.add(OurProject.inactiveButtonClass); // стиль неработающей кнопки
-  } else buttonElement.classList.remove(OurProject.inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(OurProject.inactiveButtonClass);
+    buttonElement.disabled = false;
+  }
 }
 enableValidation(mestoSettings); // 1)запуск валидации формы
