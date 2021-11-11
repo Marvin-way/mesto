@@ -12,7 +12,7 @@ const imageView = page.querySelector('.popup-view');
 const imageViewImg = page.querySelector('.popup-view__image');
 const imageViewCaption = page.querySelector('.popup-view__caption');
 
-const popups = [...page.querySelectorAll('.popup')];
+const popups = page.querySelectorAll('.popup');
 const popupProfile = page.querySelector('.popup_profile');
 const popupCard = page.querySelector('.popup_card');
 const popupFormProfile = page.querySelector('.popup__form_profile');
@@ -24,6 +24,8 @@ const popupLink = page.querySelector('.popup__input_link');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
+
+const ESC_CODE = 'Escape';
 /////////////////////////////////////////////////////////////////////////
 ///////////////////      Основные скрипты тут     ///////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -49,9 +51,11 @@ function addCard(name, link) {
 }
 function openPopup(thisPopup) {
   thisPopup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEscape);
 }
 function closePopup(thisPopup) {
   thisPopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEscape);
 }
 function handleProfileFormOpen(popupProfile) {
   popupName.value = profileTitle.textContent;
@@ -75,6 +79,12 @@ function showImage(name, link) {
   imageViewCaption.textContent = name;
   openPopup(imageView);
 }
+function closePopupEscape(evt) {
+  if(evt.key === ESC_CODE) {
+    const openedPopup = page.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
+}
 /////////////////////////////////////////////////////////////////////////
 ////////////      Устанавливаем слежку за событиями =)    ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -87,7 +97,7 @@ popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormCard.addEventListener('submit', handleCardFormSubmit);
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-    if ( evt.target.classList.contains('popup_opened')){
+    if (evt.target.classList.contains('popup_opened')){
       closePopup(popup);
     };
   })
