@@ -8,3 +8,8 @@
   line-height: 15px;
   color: #FF0000;
 }
+@media screen and (max-width: 650px) {
+  .popup__error {
+    width: 238px;
+  }
+}

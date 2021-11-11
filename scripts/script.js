@@ -12,6 +12,7 @@ const imageView = page.querySelector('.popup-view');
 const imageViewImg = page.querySelector('.popup-view__image');
 const imageViewCaption = page.querySelector('.popup-view__caption');
 
+const popups = [...page.querySelectorAll('.popup')];
 const popupProfile = page.querySelector('.popup_profile');
 const popupCard = page.querySelector('.popup_card');
 const popupFormProfile = page.querySelector('.popup__form_profile');
@@ -84,4 +85,11 @@ closeButtonCard.addEventListener('click', () => closePopup(popupCard));
 closeButtonView.addEventListener('click', () => closePopup(imageView));
 popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormCard.addEventListener('submit', handleCardFormSubmit);
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if ( evt.target.classList.contains('popup_opened')){
+      closePopup(popup);
+    };
+  })
+})
 startPage ();

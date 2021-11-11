@@ -7,7 +7,6 @@ const mestoSettings = {
   errorClass: 'popup__error_visible'
 }
 const showInputError = (formElement, inputElement, errorMessage, OurProject) => {
-  console.log(inputElement);
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);// находим нужный нам спан, под конкретным инпутом
   inputElement.classList.add(OurProject.inputErrorClass); // добавляем к инпуту красное подчеркивание
   errorElement.textContent = errorMessage; // вставляем текст ошибки в спан подсказку
