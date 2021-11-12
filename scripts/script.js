@@ -45,7 +45,7 @@ function addCard(name, link) {
   });
   const deleteButton = elementCard.querySelector('.element__button-delete'); // аналогично вешаем, для удаления всего узла при нажатии кнопки
   deleteButton.addEventListener('click', () => {
-    deleteButton.parentNode.remove(deleteButton);
+    elementCard.remove();
   });
   elementImage.addEventListener('click', () => showImage(name, link));
   return elementCard;
