@@ -27,7 +27,7 @@ const checkInputValidity = (formElement, inputElement, OurProject) => { // по�
     hideInputError(formElement, inputElement, OurProject);
   }
 };
-const setEventListeners = (fieldset, formElement, OurProject) => {
+const setEventListeners = (formElement, OurProject) => {
   const inputList = Array.from(formElement.querySelectorAll(OurProject.inputSelector)); //из полученной формы берем все поля инпутов
   const buttonElement = formElement.querySelector(OurProject.submitButtonSelector); // в форме находим кнопку сабмита
   toggleButtonState(inputList, buttonElement, OurProject);// запускаем переключаель активности кнопки - проверяем все ли инпуты корректные
@@ -44,10 +44,7 @@ const enableValidation = (OurProject) => { // 1) запускаем наш пр�
     formElement.addEventListener('submit', function (evt) { // 4) убираем у каждой формы стандартную отправку
       evt.preventDefault();
     });
-    const fieldsetList = Array.from(formElement.querySelectorAll(OurProject.inputSelector)); // 5) создаем массив из инпутов формы
-    fieldsetList.forEach((fieldset) => {
-    setEventListeners(fieldset, formElement, OurProject); // 6) к каждому инпуту в формах применяем проверку валидации путем установки слушателей
-  });
+    setEventListeners(formElement, OurProject); // 5) к каждому инпуту в формах применяем проверку валидации путем установки слушателей
   });
 };
 function hasInvalidInput(inputList){

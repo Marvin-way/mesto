@@ -35,9 +35,10 @@ function renderCard(name, link) {
 function addCard(name, link) {
   const createElement = document.querySelector('#create-element').content; //Копируем нужный узел из шаблона в HTML
   const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
+  const elementImage = elementCard.querySelector('.element__image');
   elementCard.querySelector('.element__name').textContent = name; //Вставляем в название карточки имя из массива
-  elementCard.querySelector('.element__image').src = link; //и ссылку таким же образом
-  elementCard.querySelector('.element__image').alt = `Картинка ${name}`;
+  elementImage.src = link; //и ссылку таким же образом
+  elementImage.alt = `Картинка ${name}`;
   const buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
   buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
     buttonLike.classList.toggle('element__button_active');
@@ -46,7 +47,7 @@ function addCard(name, link) {
   deleteButton.addEventListener('click', () => {
     deleteButton.parentNode.remove(deleteButton);
   });
-  elementCard.querySelector('.element__image').addEventListener('click', () => showImage(name, link));
+  elementImage.addEventListener('click', () => showImage(name, link));
   return elementCard;
 }
 function openPopup(thisPopup) {
