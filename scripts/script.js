@@ -21,6 +21,7 @@ const popupName = page.querySelector('.popup__input_name');
 const popupJob = page.querySelector('.popup__input_job');
 const popupPlace = page.querySelector('.popup__input_place');
 const popupLink = page.querySelector('.popup__input_link');
+const popupButtonCard = popupFormCard.querySelector('.popup__button');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
@@ -73,6 +74,8 @@ function handleCardFormSubmit(evt) {
   closePopup(popupCard);
   popupPlace.value = "";
   popupLink.value = "";
+  popupButtonCard.disabled = true;
+  popupButtonCard.classList.add('popup__button_disabled');
 }
 function showImage(name, link) {
   imageViewImg.src = link;
