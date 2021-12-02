@@ -34,21 +34,8 @@ function renderCard(name, link) {
   elementsList.prepend(addCard(name, link));
 }
 function addCard(name, link) {
-  const createElement = document.querySelector('#create-element').content; //Копируем нужный узел из шаблона в HTML
-  const elementCard = createElement.querySelector('.element__card').cloneNode(true); //Создаем в переменной конкретный узел, добавляемый на страницу
-  const elementImage = elementCard.querySelector('.element__image');
-  elementCard.querySelector('.element__name').textContent = name; //Вставляем в название карточки имя из массива
-  elementImage.src = link; //и ссылку таким же образом
-  elementImage.alt = `Картинка ${name}`;
-  const buttonLike = elementCard.querySelector('.element__button'); // Создаем переменную кнопки, потом на нее и повесим слушателя
-  buttonLike.addEventListener('click', () => { //вешаем, если так это можно назвать, сразу на колбэк
-    buttonLike.classList.toggle('element__button_active');
-  });
-  const deleteButton = elementCard.querySelector('.element__button-delete'); // аналогично вешаем, для удаления всего узла при нажатии кнопки
-  deleteButton.addEventListener('click', () => {
-    elementCard.remove();
-  });
-  elementImage.addEventListener('click', () => showImage(name, link));
+  const card = new Card(name, link, '#create-element');
+  const elementCard = card.generateCard();
   return elementCard;
 }
 function openPopup(thisPopup) {
@@ -77,12 +64,7 @@ function handleCardFormSubmit(evt) {
   popupButtonCard.disabled = true;
   popupButtonCard.classList.add('popup__button_disabled');
 }
-function showImage(name, link) {
-  imageViewImg.src = link;
-  imageViewImg.alt = `Картинка ${name}`;
-  imageViewCaption.textContent = name;
-  openPopup(imageView);
-}
+
 function closePopupEscape(evt) {
   if(evt.key === ESC_CODE) {
     const openedPopup = page.querySelector('.popup_opened');
@@ -90,7 +72,7 @@ function closePopupEscape(evt) {
   }
 }
 /////////////////////////////////////////////////////////////////////////
-////////////      Устанавливаем слежку за событиями =)    ///////////////
+////////////      Устанавливаем слежку за событиями    //////////////////
 /////////////////////////////////////////////////////////////////////////
 editButton.addEventListener('click', () => handleProfileFormOpen(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
@@ -106,4 +88,45 @@ popups.forEach((popup) => {
     };
   })
 })
-startPage ();
+class Card {
+  constructor(name, link, cardTemplate){
+    this._name = name,
+    this._link = link,
+    this._cardTemplate = cardTemplate
+  }
+  _getTemplate() {
+    const cardElement = document
+    .querySelector(this._cardTemplate)
+    .content
+    .querySelector('.element__card')
+    .cloneNode(true);
+    return cardElement;
+  }
+  _setEventsListeners(){
+    this._item.querySelector('.element__image').addEventListener('click', (evt) => this._showImage());
+    this._item.querySelector('.element__button').addEventListener('click', (evt) => this._likeButton());
+    this._item.querySelector('.element__button-delete').addEventListener('click', (evt) => this._deleteButton());
+  }
+  generateCard() { 
+    this._item = this._getTemplate();
+    this._setEventsListeners();
+    this._item.querySelector('.element__image').src = this._link;
+    this._item.querySelector('.element__name').textContent = this._name;
+    this._item.querySelector('.element__name').alt = this._name;
+    return this._item;
+  }
+  _showImage(){
+    imageViewImg.src = this._link;
+    imageViewImg.alt = `Картинка ${this._name}`;
+    imageViewCaption.textContent = this._name;
+    openPopup(imageView);
+  }
+  _likeButton(){
+    this._item.querySelector('.element__button').classList.toggle('element__button_active');
+  }
+  _deleteButton(){
+    this._item.remove();
+  }
+  
+}
+export  { Card };

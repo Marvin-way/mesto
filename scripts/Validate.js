@@ -54,10 +54,10 @@ function hasInvalidInput(inputList){
 }
 function toggleButtonState(inputList, buttonElement, OurProject){ //тут мы получаем массив инпутов и кнопку отправки формы
   if(hasInvalidInput(inputList)){ // если хоть один инпут некорректный - кнопка не работает
-    buttonElement.classList.add(OurProject.inactiveButtonClass); // стиль неработающей кнопки
+    buttonElement.classList.add(OurProject.inactiveButtonClass); // добавить стиль неработающей кнопки
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.remove(OurProject.inactiveButtonClass);
+    buttonElement.classList.remove(OurProject.inactiveButtonClass); // убрать стиль 
     buttonElement.disabled = false;
   }
 }
