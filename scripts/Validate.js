@@ -1,4 +1,4 @@
-const mestoSettings = {
+export const mestoSettings = {
   formSelector: '.popup__form ',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -65,11 +65,10 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-const start = (OurProject) => { 
+export const start = (OurProject) => { 
   const formList = Array.from(document.querySelectorAll(OurProject.formSelector)); 
   formList.forEach((formElement) => {
     let form = new FormValidator(OurProject, formElement);
     form.enableValidation();
   });
 };
-start(mestoSettings);

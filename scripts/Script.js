@@ -1,4 +1,5 @@
-import  { Card } from "./Card.js"
+import  { Card } from "./Card.js";
+import { start, mestoSettings } from "./Validate.js";
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -36,3 +37,4 @@ function startPage () {
   })
 };
 startPage();
+start(mestoSettings);
