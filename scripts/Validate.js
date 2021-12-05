@@ -6,59 +6,70 @@ const mestoSettings = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 }
-const showInputError = (formElement, inputElement, errorMessage, OurProject) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);// находим нужный нам спан, под конкретным инпутом
-  inputElement.classList.add(OurProject.inputErrorClass); // добавляем к инпуту красное подчеркивание
-  errorElement.textContent = errorMessage; // вставляем текст ошибки в спан подсказку
-  errorElement.classList.add(OurProject.errorClass); // показываем элемент пользователю, который изначально скрыт
-};
-
-const hideInputError = (formElement, inputElement, OurProject) => {
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.remove(OurProject.inputErrorClass);
-  errorElement.classList.remove(OurProject.errorClass);
-  errorElement.textContent = '';
-};
-
-const checkInputValidity = (formElement, inputElement, OurProject) => { // получаем конкретный инпут и его форму
-  if (!inputElement.validity.valid) { //если значение кривое - показываем ошибку - иначе скрываем
-    showInputError(formElement, inputElement, inputElement.validationMessage, OurProject); //
-  } else {
-    hideInputError(formElement, inputElement, OurProject);
+class FormValidator {
+  constructor(mestoSettings, form){
+    this._OurProject = mestoSettings,
+    this._form = form
   }
-};
-const setEventListeners = (formElement, OurProject) => {
-  const inputList = Array.from(formElement.querySelectorAll(OurProject.inputSelector)); //из полученной формы берем все поля инпутов
-  const buttonElement = formElement.querySelector(OurProject.submitButtonSelector); // в форме находим кнопку сабмита
-  toggleButtonState(inputList, buttonElement, OurProject);// запускаем переключаель активности кнопки - проверяем все ли инпуты корректные
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () { // теперь каждый ввод\удаление символов в инпут будет проверятся
-      checkInputValidity(formElement, inputElement, OurProject); //каждый раз будем запускать валидацию
-      toggleButtonState(inputList, buttonElement, OurProject); // при каждом вводе проверяем состояние кнопки
-    });
-  });
-}
-const enableValidation = (OurProject) => { // 1) запускаем наш проект 
-  const formList = Array.from(document.querySelectorAll(OurProject.formSelector)); // 2)создаем массив из форм (пока что 2 формы)
-  formList.forEach((formElement) => { // 3) проходимся по каждой форме
-    formElement.addEventListener('submit', function (evt) { // 4) убираем у каждой формы стандартную отправку
+  _deleteSubmit(){
+    this._form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
-    setEventListeners(formElement, OurProject); // 5) к каждому инпуту в формах применяем проверку валидации путем установки слушателей
+  }
+  _toggleButtonState(inputList, buttonElement){
+    if(this._hasInvalidInput(inputList)){
+      buttonElement.classList.add(this._OurProject.inactiveButtonClass);
+      buttonElement.disabled = true;
+    } else {
+      buttonElement.classList.remove(this._OurProject.inactiveButtonClass);
+      buttonElement.disabled = false;
+    }
+  }
+  _showInputError(inputElement, errorMessage,){
+    const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add(this._OurProject.inputErrorClass); 
+    errorElement.textContent = errorMessage;
+    errorElement.classList.add(this._OurProject.errorClass);
+  };
+  _hideInputError(inputElement){
+    const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(this._OurProject.inputErrorClass);
+    errorElement.classList.remove(this._OurProject.errorClass);
+    errorElement.textContent = '';
+  };
+  _checkInputValidity(inputElement){
+    if (!inputElement.validity.valid) { 
+      this._showInputError(inputElement, inputElement.validationMessage);
+    } else {
+      this._hideInputError(inputElement);
+    }
+  }
+  _setEventListeners(){
+    const inputList = Array.from(this._form.querySelectorAll(this._OurProject.inputSelector));
+    const buttonElement = this._form.querySelector(this._OurProject.submitButtonSelector);
+    this._toggleButtonState(inputList, buttonElement);
+   inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', (evt) => {
+      this._checkInputValidity(inputElement);
+      this._toggleButtonState(inputList, buttonElement);
+    });
   });
-};
-function hasInvalidInput(inputList){
-  return inputList.some((inputElement) => { //ищем хотя бы один кривой инпут
-  return !inputElement.validity.valid; // если все инпуты корректные, то вернется false
-}); 
-}
-function toggleButtonState(inputList, buttonElement, OurProject){ //тут мы получаем массив инпутов и кнопку отправки формы
-  if(hasInvalidInput(inputList)){ // если хоть один инпут некорректный - кнопка не работает
-    buttonElement.classList.add(OurProject.inactiveButtonClass); // добавить стиль неработающей кнопки
-    buttonElement.disabled = true;
-  } else {
-    buttonElement.classList.remove(OurProject.inactiveButtonClass); // убрать стиль 
-    buttonElement.disabled = false;
+  }
+  _hasInvalidInput(inputList){
+    return inputList.some((inputElement) => { 
+    return !inputElement.validity.valid; 
+  }); 
+  }
+  enableValidation(){
+    this._deleteSubmit();
+    this._setEventListeners();
   }
 }
-enableValidation(mestoSettings); // 1)запуск валидации формы
+const start = (OurProject) => { 
+  const formList = Array.from(document.querySelectorAll(OurProject.formSelector)); 
+  formList.forEach((formElement) => {
+    let form = new FormValidator(OurProject, formElement);
+    form.enableValidation();
+  });
+};
+start(mestoSettings);
