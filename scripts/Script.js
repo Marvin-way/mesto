@@ -1,5 +1,5 @@
 import  { Card } from "./Card.js";
-import { start, mestoSettings } from "./Validate.js";
+import { start, mestoSettings } from "./FormValidator.js";
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ editButton.addEventListener('click', () => handleProfileFormOpen(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
 popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormCard.addEventListener('submit', handleCardFormSubmit);
-popups.forEach((popup) => {
+popups.forEach((popup) => {//cool
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened')){
       closePopup(popup);
@@ -113,7 +113,7 @@ popups.forEach((popup) => {
     };
   })
 })
-function startPage () {
+function startPage() {
     initialCards.forEach(item => {
     const card = renderCard(item.name, item.link);
     return card;

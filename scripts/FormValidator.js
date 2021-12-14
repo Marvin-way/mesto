@@ -11,7 +11,7 @@ class FormValidator {
     this._OurProject = mestoSettings,
     this._form = form
   }
-  _deleteSubmit(){
+  _setSubmitHanldler(){
     this._form.addEventListener('submit', function (evt) {
       evt.preventDefault();
     });
@@ -61,7 +61,7 @@ class FormValidator {
   }); 
   }
   enableValidation(){
-    this._deleteSubmit();
+    this._setSubmitHanldler();
     this._setEventListeners();
   }
 }
