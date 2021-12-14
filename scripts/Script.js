@@ -34,9 +34,6 @@ const initialCards = [
 /////////////////////////////////////////////////////////////////////////
 const page = document.querySelector('.page');
 const editButton = page.querySelector('.profile__edit-button');
-const closeButtonProfile = page.querySelector('.popup__close-button_profile');
-const closeButtonCard = page.querySelector('.popup__close-button_card');
-const closeButtonView = page.querySelector('.popup__close-button_view');
 const addButton = page.querySelector('.profile__add-button');
 const elementsList = page.querySelector('.element');
 const imageView = page.querySelector('.popup-view');
@@ -104,14 +101,14 @@ function closePopupEscape(evt) {
 /////////////////////////////////////////////////////////////////////////
 editButton.addEventListener('click', () => handleProfileFormOpen(popupProfile));
 addButton.addEventListener('click', () => openPopup(popupCard));
-closeButtonProfile.addEventListener('click', () => closePopup(popupProfile));
-closeButtonCard.addEventListener('click', () => closePopup(popupCard));
-closeButtonView.addEventListener('click', () => closePopup(imageView));
 popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormCard.addEventListener('submit', handleCardFormSubmit);
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup_opened')){
+      closePopup(popup);
+    };
+    if (evt.target.classList.contains('popup__close-button')){
       closePopup(popup);
     };
   })
