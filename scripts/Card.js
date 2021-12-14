@@ -17,26 +17,28 @@ class Card {
     return cardElement;
   }
   _setEventsListeners(){
-    this._item.querySelector('.element__image').addEventListener('click', (evt) => this._showImage());
-    this._item.querySelector('.element__button').addEventListener('click', (evt) => this._likeButton());
+    this._image.addEventListener('click', (evt) => this._showImage());
+    this._button.addEventListener('click', (evt) => this._likeButton());
     this._item.querySelector('.element__button-delete').addEventListener('click', (evt) => this._deleteButton());
   }
   generateCard() { 
     this._item = this._getTemplate();
-    this._setEventsListeners();
-    this._item.querySelector('.element__image').src = this._link;
+    this._image = this._item.querySelector('.element__image');
+    this._image.src = this._link;
     this._item.querySelector('.element__name').textContent = this._name;
-    this._item.querySelector('.element__image').alt = this._name;
+    this._image.alt = this._name;
+    this._button = this._item.querySelector('.element__button');
+    this._setEventsListeners();
     return this._item;
   }
-  _showImage(){
+  _showImage(){ // убрал жесткое связываение, у нас осталась функция openPopup, кажется так тоже хорошо
     this._cardImage.src = this._link;
     this._cardImage.alt = `Картинка ${this._name}`;
     this._cardCaption.textContent = this._name;
     this._cardPopup(this._cardView);
   }
   _likeButton(){
-    this._item.querySelector('.element__button').classList.toggle('element__button_active');
+    this._button.classList.toggle('element__button_active');
   }
   _deleteButton(){
     this._item.remove();

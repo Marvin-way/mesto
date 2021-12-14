@@ -52,7 +52,6 @@ const popupName = page.querySelector('.popup__input_name');
 const popupJob = page.querySelector('.popup__input_job');
 const popupPlace = page.querySelector('.popup__input_place');
 const popupLink = page.querySelector('.popup__input_link');
-const popupButtonCard = popupFormCard.querySelector('.popup__button');
 
 const profileTitle = page.querySelector('.profile__title');
 const profileSubTitle = page.querySelector('.profile__subtitle');
