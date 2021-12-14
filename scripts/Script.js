@@ -1,5 +1,5 @@
 import  { Card } from "./Card.js";
-import { start, mestoSettings } from "./FormValidator.js";
+import { startValidation, mestoSettings } from "./FormValidator.js";
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -120,4 +120,4 @@ function startPage() {
   })
 };
 startPage();
-start(mestoSettings);
+startValidation(mestoSettings);

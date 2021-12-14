@@ -8,7 +8,7 @@ export const mestoSettings = {
 }
 class FormValidator {
   constructor(mestoSettings, form){
-    this._OurProject = mestoSettings,
+    this._config = mestoSettings,
     this._form = form
   }
   _setSubmitHanldler(){
@@ -18,23 +18,23 @@ class FormValidator {
   }
   _toggleButtonState(inputList, buttonElement){
     if(this._hasInvalidInput(inputList)){
-      buttonElement.classList.add(this._OurProject.inactiveButtonClass);
+      buttonElement.classList.add(this._config.inactiveButtonClass);
       buttonElement.disabled = true;
     } else {
-      buttonElement.classList.remove(this._OurProject.inactiveButtonClass);
+      buttonElement.classList.remove(this._config.inactiveButtonClass);
       buttonElement.disabled = false;
     }
   }
   _showInputError(inputElement, errorMessage,){
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add(this._OurProject.inputErrorClass); 
+    inputElement.classList.add(this._config.inputErrorClass); 
     errorElement.textContent = errorMessage;
-    errorElement.classList.add(this._OurProject.errorClass);
+    errorElement.classList.add(this._config.errorClass);
   };
   _hideInputError(inputElement){
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove(this._OurProject.inputErrorClass);
-    errorElement.classList.remove(this._OurProject.errorClass);
+    inputElement.classList.remove(this._config.inputErrorClass);
+    errorElement.classList.remove(this._config.errorClass);
     errorElement.textContent = '';
   };
   _checkInputValidity(inputElement){
@@ -45,8 +45,8 @@ class FormValidator {
     }
   }
   _setEventListeners(){
-    const inputList = Array.from(this._form.querySelectorAll(this._OurProject.inputSelector));
-    const buttonElement = this._form.querySelector(this._OurProject.submitButtonSelector);
+    const inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+    const buttonElement = this._form.querySelector(this._config.submitButtonSelector);
     this._toggleButtonState(inputList, buttonElement);
    inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', (evt) => {
@@ -65,10 +65,10 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-export const start = (OurProject) => { 
-  const formList = Array.from(document.querySelectorAll(OurProject.formSelector)); 
+export const startValidation = (config) => { 
+  const formList = Array.from(document.querySelectorAll(config.formSelector)); 
   formList.forEach((formElement) => {
-    let form = new FormValidator(OurProject, formElement);
+    const form = new FormValidator(config, formElement);
     form.enableValidation();
   });
 };
