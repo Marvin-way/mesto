@@ -1,5 +1,5 @@
 import  { Card } from "./Card.js";
-import { startValidation, mestoSettings } from "./FormValidator.js";
+import { FormValidator } from "./FormValidator.js";
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -29,6 +29,14 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+const config = {
+  formSelector: '.popup__form ',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
 /////////////////////////////////////////////////////////////////////////
 ////////////    Находим все нужные для алгоритма узлы     ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -77,7 +85,8 @@ function handleProfileFormOpen(popupProfile) {
   popupName.value = profileTitle.textContent;
   popupJob.value = profileSubTitle.textContent;
   openPopup(popupProfile);
-}
+  formValidators[popupFormProfile.name].resetValidation();
+  }
 function handleProfileFormSubmit(evt) {
   profileTitle.textContent = popupName.value;
   profileSubTitle.textContent = popupJob.value;
@@ -113,11 +122,20 @@ popups.forEach((popup) => {//cool
     };
   })
 })
-function startPage() {
+const startPage = (initialCards) => {
     initialCards.forEach(item => {
     const card = renderCard(item.name, item.link);
-    return card;
   })
 };
-startPage();
-startValidation(mestoSettings);
+const formValidators = {};
+const startValidation = (config) => { 
+  const formList = Array.from(document.querySelectorAll(config.formSelector)); 
+  formList.forEach((formElement) => {
+    const validateForm = new FormValidator(config, formElement);
+    formValidators[formElement.name] = validateForm;
+    validateForm.enableValidation();
+  });
+};
+startPage(initialCards);
+startValidation(config);
+console.log(formValidators);
