@@ -1,12 +1,9 @@
 class Card {
-  constructor(name, link, cardTemplate, imageView,imageViewImg, imageViewCaption, openPopup){
+  constructor(name, link, cardTemplate, handleCardClick){
     this._name = name,
     this._link = link,
     this._cardTemplate = cardTemplate, 
-    this._cardView = imageView,
-    this._cardImage = imageViewImg, 
-    this._cardCaption = imageViewCaption,
-    this._cardPopup = openPopup
+    this._handleCardClick = handleCardClick
   }
   _getTemplate() {
     const cardElement = document
@@ -16,8 +13,9 @@ class Card {
     .cloneNode(true);
     return cardElement;
   }
+  
   _setEventsListeners(){
-    this._image.addEventListener('click', (evt) => this._showImage());
+    this._image.addEventListener('click', (evt) => this._handleCardClick(this._name, this._link));
     this._button.addEventListener('click', (evt) => this._likeButton());
     this._item.querySelector('.element__button-delete').addEventListener('click', (evt) => this._deleteButton());
   }
@@ -30,12 +28,6 @@ class Card {
     this._button = this._item.querySelector('.element__button');
     this._setEventsListeners();
     return this._item;
-  }
-  _showImage(){ // убрал жесткое связываение, у нас осталась функция openPopup, кажется так тоже хорошо
-    this._cardImage.src = this._link;
-    this._cardImage.alt = `Картинка ${this._name}`;
-    this._cardCaption.textContent = this._name;
-    this._cardPopup(this._cardView);
   }
   _likeButton(){
     this._button.classList.toggle('element__button_active');

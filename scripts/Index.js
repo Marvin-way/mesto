@@ -69,7 +69,7 @@ function renderCard(name, link) {
   elementsList.prepend(addCard(name, link));
 }
 function addCard(name, link) {
-  const card = new Card(name, link, '#create-element', imageView, imageViewImg, imageViewCaption, openPopup);
+  const card = new Card(name, link, '#create-element', handleCardClick);
   const elementCard = card.generateCard();
   return elementCard;
 }
@@ -85,6 +85,13 @@ function handleProfileFormOpen(popupProfile) {
   popupName.value = profileTitle.textContent;
   popupJob.value = profileSubTitle.textContent;
   openPopup(popupProfile);
+  formValidators['edit-profile'].resetValidation();
+  }
+function handleCardFormOpen(popupCard) {
+  popupPlace.value = "";
+  popupLink.value = "";
+  openPopup(popupCard);
+  formValidators['edit-card'].resetValidation();
   }
 function handleProfileFormSubmit(evt) {
   profileTitle.textContent = popupName.value;
@@ -97,7 +104,12 @@ function handleCardFormSubmit(evt) {
   popupPlace.value = "";
   popupLink.value = "";
 }
-
+function handleCardClick(name, link){
+  imageViewImg.src = link;
+  imageViewImg.alt = `Картинка ${name}`;
+  imageViewCaption.textContent = name;
+  openPopup(imageView);
+}
 function closePopupEscape(evt) {
   if(evt.key === ESC_CODE) {
     const openedPopup = page.querySelector('.popup_opened');
@@ -108,7 +120,7 @@ function closePopupEscape(evt) {
 ////////////      Устанавливаем слежку за событиями    //////////////////
 /////////////////////////////////////////////////////////////////////////
 editButton.addEventListener('click', () => handleProfileFormOpen(popupProfile));
-addButton.addEventListener('click', () => openPopup(popupCard));
+addButton.addEventListener('click', () => handleCardFormOpen(popupCard));
 popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormCard.addEventListener('submit', handleCardFormSubmit);
 popups.forEach((popup) => {//cool
@@ -131,10 +143,10 @@ const startValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector)); 
   formList.forEach((formElement) => {
     const validateForm = new FormValidator(config, formElement);
-    formValidators[formElement.name] = validateForm;
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validateForm;
     validateForm.enableValidation();
   });
 };
 startPage(initialCards);
 startValidation(config);
-console.log(formValidators);
