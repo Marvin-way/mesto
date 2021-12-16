@@ -85,7 +85,6 @@ function handleProfileFormOpen(popupProfile) {
   popupName.value = profileTitle.textContent;
   popupJob.value = profileSubTitle.textContent;
   openPopup(popupProfile);
-  formValidators[popupFormProfile.name].resetValidation();
   }
 function handleProfileFormSubmit(evt) {
   profileTitle.textContent = popupName.value;
