@@ -1,5 +1,6 @@
 import  { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { Section } from "./Section.js";
 /////////////////////////////////////////////////////////////////////////
 ////////////   Стартовая загрузка страницы с карточками   ///////////////
 /////////////////////////////////////////////////////////////////////////
@@ -65,14 +66,6 @@ const ESC_CODE = 'Escape';
 /////////////////////////////////////////////////////////////////////////
 ///////////////////      Основные скрипты тут     ///////////////////////
 /////////////////////////////////////////////////////////////////////////
-function renderCard(name, link) {
-  elementsList.prepend(addCard(name, link));
-}
-function addCard(name, link) {
-  const card = new Card(name, link, '#create-element', handleCardClick);
-  const elementCard = card.generateCard();
-  return elementCard;
-}
 function openPopup(thisPopup) {
   thisPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEscape);
@@ -133,11 +126,7 @@ popups.forEach((popup) => {//cool
     };
   })
 })
-const startPage = (initialCards) => {
-    initialCards.forEach(item => {
-    const card = renderCard(item.name, item.link);
-  })
-};
+
 const formValidators = {};
 const startValidation = (config) => { 
   const formList = Array.from(document.querySelectorAll(config.formSelector)); 
@@ -148,5 +137,15 @@ const startValidation = (config) => {
     validateForm.enableValidation();
   });
 };
-startPage(initialCards);
+
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, '#create-element', handleCardClick);
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+}, '.element');
+cardList.renderItems();
+
 startValidation(config);
