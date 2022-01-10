@@ -1,27 +1,28 @@
-import  { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from "./Section.js";
-import { Popup } from "./Popup.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { config, initialCards } from "./constants.js";
-import { UserInfo } from "./UserInfo.js"; 
+import  { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { Section } from "../components/Section.js";
+import { Popup } from "../components/Popup.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { config, initialCards } from "../utils/constants.js";
+import { UserInfo } from "../components/UserInfo.js"; 
 
-const page = document.querySelector('.page');
-const editButton = page.querySelector('.profile__edit-button');
-const addButton = page.querySelector('.profile__add-button');
-const elementsList = page.querySelector('.element');
-const popupProfile = page.querySelector('.popup_profile');
-const popupCard = page.querySelector('.popup_card');
-const popupFormProfile = page.querySelector('.popup__form_profile');
-const popupFormCard = page.querySelector('.popup__form_card');
-const popupName = page.querySelector('.popup__input_name');
-const popupJob = page.querySelector('.popup__input_job');
-const popupPlace = page.querySelector('.popup__input_place');
-const popupLink = page.querySelector('.popup__input_link');
-const profileTitle = page.querySelector('.profile__title');
-const profileSubTitle = page.querySelector('.profile__subtitle');
-
+import {page,
+  editButton,
+  addButton,
+  elementsList,
+  popupProfile,
+  popupCard,
+  popupFormProfile,
+  popupFormCard,
+  popupName, 
+  popupJob, 
+  popupPlace, 
+  popupLink, 
+  profileTitle, 
+  profileSubTitle
+} from "../utils/constants.js"
+console.log('Hello, World!') 
 /////////////////////////////////////////////////////////////////////////
 ///////////////////        Основные скрипты       ///////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -64,7 +65,7 @@ function handleCardClick(name, link){
 editButton.addEventListener('click', () => handleProfileFormOpen());
 addButton.addEventListener('click', () => handleCardFormOpen());
 popupFormCard.addEventListener('submit', (evt) => handleCardFormSubmit(evt));
-const formCard = new PopupWithForm('.popup_card', config,  {data: null});
+
 
 //создаем массив всех форм на странице
 const formValidators = {};
@@ -77,7 +78,6 @@ const startValidation = (config) => {
     validateForm.enableValidation();
   });
 };
-const popupWithImage = new PopupWithImage('.popup-view');
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
@@ -90,9 +90,11 @@ cardList.renderItems();
 //включаем валидацию форм
 startValidation(config);
 
+const popupWithImage = new PopupWithImage('.popup-view');
+const formCard = new PopupWithForm('.popup_card', config,  {data: null});
 //создаем класс с данными юзера
 const userInfo = new UserInfo(config);
-//создаем класс с попапом юзера
+//создаем класс с попапом редактирования юзера
 const formProfile = new PopupWithForm('.popup_profile', config, { handleFormSubmit: (data) => userInfo.setUserInfo(data)});
 // formProfile.setEventListeners();
 // formCard.setEventListeners();

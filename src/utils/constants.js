@@ -34,3 +34,34 @@ export const config = {
   profileTitle: '.profile__title',
   profileSubTitle: '.profile__subtitle'
 }
+
+const page = document.querySelector('.page');
+const editButton = page.querySelector('.profile__edit-button');
+const addButton = page.querySelector('.profile__add-button');
+const elementsList = page.querySelector('.element');
+const popupProfile = page.querySelector('.popup_profile');
+const popupCard = page.querySelector('.popup_card');
+const popupFormProfile = page.querySelector('.popup__form_profile');
+const popupFormCard = page.querySelector('.popup__form_card');
+const popupName = page.querySelector('.popup__input_name');
+const popupJob = page.querySelector('.popup__input_job');
+const popupPlace = page.querySelector('.popup__input_place');
+const popupLink = page.querySelector('.popup__input_link');
+const profileTitle = page.querySelector('.profile__title');
+const profileSubTitle = page.querySelector('.profile__subtitle');
+
+export {page,
+  editButton,
+  addButton,
+  elementsList,
+  popupProfile,
+  popupCard,
+  popupFormProfile,
+  popupFormCard,
+  popupName, 
+  popupJob, 
+  popupPlace, 
+  popupLink, 
+  profileTitle, 
+  profileSubTitle
+}
