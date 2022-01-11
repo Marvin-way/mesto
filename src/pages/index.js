@@ -7,7 +7,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { config, initialCards } from "../utils/constants.js";
 import { UserInfo } from "../components/UserInfo.js"; 
 
-import {page,
+import {
   editButton,
   addButton,
   elementsList,
@@ -18,11 +18,10 @@ import {page,
   popupName, 
   popupJob, 
   popupPlace, 
-  popupLink, 
-  profileTitle, 
-  profileSubTitle
+  popupLink,
 } from "../utils/constants.js"
-console.log('Hello, World!') 
+
+import './index.css';
 /////////////////////////////////////////////////////////////////////////
 ///////////////////        Основные скрипты       ///////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -89,12 +88,10 @@ const cardList = new Section({
 cardList.renderItems();
 //включаем валидацию форм
 startValidation(config);
-
+console.log("lalalla")
 const popupWithImage = new PopupWithImage('.popup-view');
 const formCard = new PopupWithForm('.popup_card', config,  {data: null});
 //создаем класс с данными юзера
 const userInfo = new UserInfo(config);
 //создаем класс с попапом редактирования юзера
 const formProfile = new PopupWithForm('.popup_profile', config, { handleFormSubmit: (data) => userInfo.setUserInfo(data)});
-// formProfile.setEventListeners();
-// formCard.setEventListeners();

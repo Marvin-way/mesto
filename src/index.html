@@ -4,18 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link type="image/x-icon" href="./images/favicon.ico" rel="shortcut icon">
-  <link type="Image/x-icon" href="./images/favicon.ico" rel="icon">
-  <link rel="stylesheet" type="text/css" href="./pages/index.css" >
+  <link type="image/x-icon" href="<%=require('./images/favicon.ico')>" rel="shortcut icon">
+  <link type="Image/x-icon" href="<%=require('./images/favicon.ico')>" rel="icon">
+  <!-- <link rel="stylesheet" type="text/css" href="./pages/index.css" > -->
 </head>
 <body class="root">
   <div class="page">
     <header class="header">
-      <a href="#"><img src="images/logo/__logo.svg" class="header__logo" alt="Логотип карты России"></a> 
+      <a href="#"><img src="<%=require('./images/logo/__logo.svg')>" class="header__logo" alt="Логотип карты России"></a> 
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/__avatar.png"
+        <img class="profile__avatar" src="<%=require('./images/__avatar.png')>"
         alt="Аватар пользователя">
         <div class="profile__info">
           <div class="profile__box">
@@ -108,7 +108,7 @@
       </article>
     </template>
   </div>
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script>
   <script type="module" src="./components/Card.js"></script>
   <script type="module" src="./components/FormValidator.js"></script>
   <script type="module" src="./components/Section.js"></script>
@@ -116,6 +116,6 @@
   <script type="module" src="./components/PopupWithImage.js"></script>
   <script type="module" src="./components/PopupWithForm.js"></script>
   <script type="module" src="./utils/constants.js"></script>
-  <script type="module" src="./components/UserInfo.js"></script>
+  <script type="module" src="./components/UserInfo.js"></script> -->
 </body>
 </html>
